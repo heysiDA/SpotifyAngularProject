@@ -13,7 +13,7 @@ export class SpotifyService {
     const url =`https://api.spotify.com/v1/${query}`;
     
     const headers = new HttpHeaders({
-      'Authorization':'Bearer BQA45WwprHLno-rFCobbRl6b4YAc_fq2T7ahKOFmsEcFo7FSRyXP8qGjJwUKYjEn-_Y2yTCabrguwpS42Vc'
+      'Authorization':'Bearer BQCcezVlERIgRonclYNzV3-Jx2bRFryvx162iPrf9-cy9YGSHeoB9_Rd7zqCJ1ZkQ6k0fzD49jfmQqbyUJk'
     })
     
     return this.http.get(url,{headers});
@@ -27,12 +27,16 @@ export class SpotifyService {
     
   }
 
-  getArtist(term:string){
+  getArtists(term:string){
 
     return this.getQuery(`search?q=${term}&type=artist&limit=15`)
                   .pipe(map(data=> data['artists'].items));
                   //when a function arrow has an only line of code and is a return,
-                  //can change like that,see the difference with the function above
-                  //remove {}, and the return word.
+                  //it can change like that,see the difference with the function above
+                  //it remove : {} and the return word.
+  }
+
+  getArtist(id:string){
+    return this.getQuery(`artists/${id}`);
   }
 }
